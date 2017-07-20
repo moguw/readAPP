@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html>
+	<!--head的设置-->
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="js/unslider.min.js"></script>
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+		<!--TourTip引导动画-->
+		<script type="text/javascript" src="js/tinytools.tourtip.min.js"></script>
+		<link rel="stylesheet" href="css/tinytools.tourtip.min.css" />
+		
+		
+		
+		<script type="text/javascript">
+			function changeTitle(n) {
+				var title = document.getElementById("header");
+				var title2 = document.getElementById("header2");
+				var title3 = document.getElementById("header3");
+				if(n == 0) {
+					title.textContent = "首页";
+					title2.textContent = "首页";
+					title3.textContent = "首页";
+				}
+				if(n == 1) {
+					title.textContent = "推荐";
+					title2.textContent = "推荐";
+					title3.textContent = "推荐";
+				}
+				if(n == 2) {
+					title.textContent = "我的";
+					title2.textContent = "我的";
+					title3.textContent = "我的";
+				}
+
+			}
+
+			function changeTheme() {
+				var page1 = document.getElementById("mainpage");
+				if(page1.getAttribute("data-theme") == 'a') {
+					page1.setAttribute("data-theme", "b")
+				}
+				if(page1.getAttribute("data-theme") == 'b') {
+					page1.setAttribute("data-theme", "a")
+				}
+			}
+
+			$(document).ready(function(e) {
+				var unslider04 = $('#b04').unslider({
+						dots: true
+					}),
+					data04 = unslider04.data('unslider');
+
+				$('.unslider-arrow04').click(function() {
+					var fn = this.className.split(' ')[1];
+					data04[fn]();
+				});
+			});
+			/*$(document).on("pagecreate", "#bookoone", function() {
+				$("#li").on("tap", function() {
+					$("#daodu").hide();
+				});
+			});*/
+
+			function denglu() {
+				var username = document.getElementById("dengluyonghu").value;
+				var passwd = document.getElementById("denglumima").value;
+			//	var value = localStorage.getItem("denglumima");
+				if($("#dengluyonghu").val()==""){
+  				$("#msg").html(alert("请输入用户名及密码"));
+  				
+  				
+  				}
+				else if($("#denglumima").val()==""){
+  				$("#msg").html(alert("请输入用户名及密码"));
+  				
+  				
+  				}
+				else{
+					window.location.href='#mainpage';
+				}
+
+			}
+			function zhuce(){
+				var zhuceusername=document.getElementById("username").value;
+				var zhucemima=document.getElementById("password").value;
+				var querenmima=document.getElementById("repassword").value;
+				var email=document.getElementById("email").value;
+				var sex=document.getElementById("sex").value;
+				var birth=document.getElementById("birthday").value;
+				if(zhucemima!==querenmima){
+					alert("两次密码不一致");
+					return false;
+				}
+				if(zhucemima.match("[a-z|A-Z]+[0-9]+")==null){
+					alert("密码格式不正确");
+					return false;
+				}
+				if(!email.match("[0-9]+\\@[a-z|0-9]{1,}\\.com")){
+					alert("邮箱格式不正确");
+					return false;
+				}else return true;
+				return false;
+			}
+			function addData(){
+				zhuce();
+				var zhuceusername=document.getElementById("username").value;
+				var zhucemima=document.getElementById("password").value;
+				var querenmima=document.getElementById("repassword").value;
+				var email=document.getElementById("email").value;
+				var sex=document.getElementById("sex").value;
+				var birth=document.getElementById("birthday").value;
+				if(zhuce()){
+					localStorage.setItem("dengluyonghu",zhuceusername);
+					localStorage.setItem("denglumima",zhucemima);
+					localStorage.setItem("email",email);
+					localStorage.setItem("sex",sex);
+					localStorage.setItem("birthday",birth);
+					alert("用户名:"+localStorage.getItem("dengluyonghu")+"\n"+
+					"密码:"+localStorage.getItem("denglumima")+"\n"+
+					"邮箱:"+localStorage.getItem("email"));
+				
+				}
+			}
+			function showInfo(){
+				/*var userName=document.getElementById("userName");
+				var userPwd=document.getElementById("userPwd");
+				var userEmail=document.getElementById("userEmail");
+				var userSex=document.getElementById("userSex");
+				var userbirth=document.getElementById("userBirth");*/
+				var dangqianyonghu=document.getElementById("dangqianyonghu");
+				dangqianyonghu.innerText=localStorage.getItem("dengluyonghu");
+				/*var strHtml = "";
+            	strHtml += "<tr>";
+            	strHtml += "<td>"+userName+"</td>";
+            	strHtml += "</tr>";
+            	$("#tblData").append(strHtml);*/
+			}
+		</script>
+		<style type="text/css">
+			.show {
+				display: block;
+			}
+			
+			.hide {
+				display: none;
+			}
+			
+			p {
+				text-indent: 2em;
+			}
+			
+			ul,
+			ol {
+				padding: 0;
+			}
+			
+			.banner {
+				position: relative;
+				overflow: auto;
+				text-align: center;
+			}
+			
+			.banner li {
+				list-style: none;
+			}
+			
+			.banner ul li {
+				float: left;
+			}
+			
+			#b04 {
+				width: 400px;
+				margin: 5px;
+			}
+			
+			#b04 .dots {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 20px;
+			}
+			
+			#b04 .dots li {
+				display: inline-block;
+				width: 10px;
+				height: 10px;
+				margin: 0 4px;
+				text-indent: -999em;
+				border: 2px solid #fff;
+				border-radius: 6px;
+				cursor: pointer;
+				opacity: .4;
+				-webkit-transition: background .5s, opacity .5s;
+				-moz-transition: background .5s, opacity .5s;
+				transition: background .5s, opacity .5s;
+			}
+			
+			#b04 .dots li.active {
+				background: #fff;
+				opacity: 1;
+			}
+			
+			#b04 .arrow {
+				position: absolute;
+				top: 200px;
+			}
+			
+			#b04 #al {
+				left: 15px;
+			}
+			
+			#b04 #ar {
+				right: 15px;
+			}
+		</style>
+	</head>
+	<!--页面设计，写在同一个html中，方便调用-->
+
+	<body>
+		<!--登陆界面-->
+		<div data-role="page" id="login">
+			<div data-role="header">
+				<h1 id="header3">LOGIN</h1>
+			</div>
+			<div data-role="main" class="ui-content">
+				<center><img src="img/2a.jpg" style=" width: 80px;height: 80px;border-radius: 54px;position: relative;top: 40px;"/></center>
+				<br /><br />
+				<form method="post" action="#">
+					<div data-role="fieldcontain">
+						<input type="text" name="dengluyonghu" id="dengluyonghu" placeholder="用户名">
+					
+						<input type="password" name="denglumima" id="denglumima" placeholder="密码">
+						<!--<select name="switch" id="switch" data-role="slider">
+							<option value="on">保存</option>
+							<option value="off">不保存</option>
+						</select>-->
+                       
+						<a href="#" data-role="button" class="ui-btn  ui-corner-all" data-transition="slide" onclick="denglu()">登录</a>
+						
+					</div>
+				</form>
+				<p>没有账号？
+					<a href="#register" data-transition="slide">点击注册</a>
+				</p>
+			</div>
+			<!--
+            	作者：offline
+            	时间：2017-06-08
+            	描述：
+            
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+
+						<li>
+							<a href="#mainpage" data-transition="slide" data-direction="reverse" class="ui-btn  ui-icon-home ui-btn-icon-left  " id="1" onclick="changeTitle(0)">藏书</a>
+						</li>
+
+						<li>
+							<a href="#library" data-transition="slide" data-direction="reverse" class="ui- btn ui-icon-grid ui-btn-icon-left " id="2" onclick="changeTitle(1)">书馆</a>
+						</li>
+						黑色 "搜索" 图标不使用灰色圆圈 (组合使用 "ui-nodisc-icon" 和 "ui-alt-icon"):
+						<li>
+							<a href="#login" data-transition="slide" class="ui-btn ui-icon-user ui-btn-icon-left ui-btn-active ui-state-persist" id="3" onclick="changeTitle(2)">我的</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			-->
+		</div>
+		<!--主页-->
+		<div data-role="page" id="mainpage" data-theme='a'>
+			<div data-role="header" data-position="fixed">
+				<h1 id="header">读书</h1>
+				<a href="#" class="ui-btn ui-corner-all ui-icon-bars  ui-btn-icon-notext" id="night">图标</a>
+
+			</div>
+              
+			<div data-role="main" class="ui-content">
+				<a href="#librarymore" data-transition="slide" class="ui-btn ui-icon-search ui-btn-icon-left ui-corner-all">搜索</a>
+				<a href="index6.html"><img src="img/qw6.jpg" width="20%" height="100px"  alt="" style="margin: 7px;"/></a><img src="img/002.jpg" width="20%" height="100px"  alt="" style="margin: 7px;"/><img src="img/003.jpg" width="20%" height="100px"  alt="" style="margin: 7px;"/>
+               <img src="img/004.jpg" width="20%" height="100px"  alt="" style="margin: 7px;"/><img src="img/005.jpg" width="20%" height="100px"  alt="" style="margin: 7px;"/><img src="img/006.jpg" width="20%" height="100px"  alt="" style="margin: 7px;"/>
+               <a href="#myPopup" data-rel="popup" class="" style="text-decoration: none;"><div style="width: 20%;height: 97px;border:2px solid; border-color: #D6D6D6;background-color:#D6D6D6;margin: 9px;position: relative;left: 160px;top: -121px;"><center style="position: relative;top: 30px;font-size: 30px;color: blue;">+</center></div></a>
+               
+    <div data-role="popup" id="myPopup" class="ui-content">
+      
+       <div style="width: 400px;height: 200px;"><a href="index6.html" data-transition="slide" style="text-decoration: none;">我的云书架<img src="img/carat-r-black.png" style="position: absolute;right: 10px;"> </a><br /><br /><a href="#bookoone" data-transition="slide" style="text-decoration: none;">WIFI无线传书<img src="img/carat-r-black.png" style="position: absolute;right: 10px;"></a><br /><br /><a href="#bookoone" data-transition="slide" style="text-decoration: none;">阅读本机图书<img src="img/carat-r-black.png" style="position: absolute;right: 10px;"></a><br /><br /><a href="#bookoone" data-transition="slide" style="text-decoration: none;">书城畅销榜<img src="img/carat-r-black.png" style="position: absolute;right: 10px;"></a><br /><br /><a href="#bookoone" data-transition="slide" style="text-decoration: none;">查看完整榜单<img src="img/carat-r-black.png" style="position: absolute;right: 10px;"></a></div>
+      
+    </div>
+				<a href="#librarymore" data-transition="slide" class="ui-btn ui-icon-search ui-btn-icon-left ui-corner-all">免费试看图书</a>
+				<ul data-role="listview" data-inset="true">
+					
+					<!--<li data-role="divider">浏览器</li>-->
+					<li>
+						<a href="#bookoone" data-transition="slide">
+							<img src="img/qw6.jpg">
+							<h2>童年</h2>
+							<p>《童年》是高尔基二○一二年的温馨长篇，这间会帮人解忧的「浪矢杂货店」，规则是只要在晚上把写了烦恼的信丢进铁卷门上的邮件投递口，隔天就可以在店后方的牛奶箱里拿到回信。</p>
+						</a>
+
+					</li>
+					<li>
+						<a href="#xianglian" data-transition="slide">
+							<img src="img/qw4.jpg">
+							<h2>莫泊桑</h2>
+							<p>故事讲述了小公务员的妻子玛蒂尔德为参加一次晚会，向朋友借了一串钻石项链，来炫耀自己的美丽。不料，项链在回家途中不慎丢失。她只得借钱买了新项链还给朋友。为了偿还债务，她节衣缩食，为别人打短工，整整劳苦了十年。最后，得知所借的项链原是一串假钻石项链。</p>
+						</a>
+
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/qw5.jpg">
+							<h2>维克多-雨果</h2>
+							<p>巴黎圣母院（港译钟楼驼侠，台译钟楼怪人）是法国文学家维克多·雨果所著，在1831年1月14日出版的小说。故事的场景设定在1482年的巴黎圣母院，内容环绕一名吉卜赛少女爱丝梅拉达和由副主教克洛德·弗洛罗养大的圣母院驼背敲钟人卡西莫多。此故事曾多次被改编成电影、电视剧及音乐剧。</p>
+						</a>
+
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/hlm.jpg">
+							<h2>莎士比亚</h2>
+							<p>《莎士比亚》， 威廉·莎士比亚(1564—1616)是文艺复兴时期英国以及欧洲最重要的作家。[1] ，又名《石头记》《金玉缘》。此书分为120回“程本”和80回“脂本”两种版本系统。新版通行本前80回据脂本汇校，后40回据程本汇校，署名“曹雪芹著，无名氏续，程伟元、高鹗整理”[2] 。</p>
+						</a>
+
+					</li>
+
+				</ul>
+
+				<!--<a href="#library" data-transition="slide" class="ui-btn ui-icon-plus ui-btn-icon-left">更多</a>
+				-->
+			</div>
+			
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+
+						<li>
+							<a href="#mainpage" data-transition="slide" class="ui-btn  ui-icon-home ui-btn-icon-left  ui-btn-active ui-state-persist" id="1" onclick="changeTitle(0)">首页</a>
+						</li>
+
+						<li>
+							<a href="#library" data-transition="slide" class="ui- btn ui-icon-grid ui-btn-icon-left " id="2" onclick="changeTitle(1)">推荐</a>
+						</li>
+						<!--黑色 "搜索" 图标不使用灰色圆圈 (组合使用 "ui-nodisc-icon" 和 "ui-alt-icon"):-->
+						<li>
+							<a href="index2.html" data-transition="slide" class="ui-btn ui-icon-user ui-btn-icon-left" id="3" onclick="changeTitle(2)">我的</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--图书馆/书城-->
+		<div data-role="page" id="library">
+			<div data-role="header" data-position="fixed">
+				<h1 id="header2">读书</h1>
+			</div>
+			<div data-role="main" class="ui-content">
+				<a href="#librarymore" data-transition="slide" class="ui-btn ui-icon-search ui-btn-icon-left ui-corner-all">搜索</a>
+
+				<form>
+					<fieldset style="border: 1px solid black;border-radius: 5px;margin: 5px;">
+						<legend style="text-align: center;font-family: default;font-size: 24px;color:white;background-color: darkslategray;">今日完结</legend>
+						<p style="text-indent: 32px;margin: 5px;">死者永远不会住嘴，也许因为死亡根本不是死亡,只是放学后的一场留堂。你知道你从哪儿来，始终还是要回到那儿去。</p>
+						<ul data-role="listview" data-inset="true">
+							<li>
+								<a href="#">
+									<img src="img/qisha.jpg" />
+									<p>七杀简史-(牙买加)马龙·詹姆斯</p>
+								</a>
+							</li>
+						</ul>
+					</fieldset>
+				</form>
+				<form>
+					<fieldset style="border: 1px solid black;border-radius: 5px;margin: 5px;">
+						<legend style="text-align: center;font-family: default;font-size: 24px;color:white;background-color: darkgray;">热门推荐</legend>
+						<p style="text-indent: 32px;margin: 5px;">我听别人说这世界上有一种鸟是没有脚的，它只能一直飞呀飞呀，飞累了就在风里面睡觉，这种鸟一辈子只能下地一次，那边一次就是它死亡的时候。</p>
+						<ul data-role="listview" data-inset="true">
+							<li>
+								<a href="#">
+									<img src="img/qw5.jpg" />
+									<p>阿飞正传-(中国)王家卫</p>
+								</a>
+							</li>
+						</ul>
+					</fieldset>
+				</form>
+				<form>
+					<fieldset style="border: 1px solid black;border-radius: 5px;margin: 5px;">
+						<legend style="text-align: center;font-family: default;font-size: 24px;color:white;background-color: darkgoldenrod;">书城畅销榜</legend>
+						<p style="text-indent: 32px;margin: 5px;">“要和一个男人相处的快乐，你应该多多了解他而不必太爱他；要和一个女人相处的快乐，你应该多爱她，却别想要了解她！”</p>
+						<ul data-role="listview" data-inset="true">
+							<li>
+								<a href="#">
+									<img src="img/qw2.jpg" />
+									<p>莎士比亚-(英国)都德</p>
+								</a>
+							</li>
+						</ul>
+					</fieldset>
+				</form>
+				<br />
+				<form>
+					<fieldset>
+						<legend style="float: left;font-weight: bold;">推荐</legend>
+						<a href="#">
+							<legend style="float: right;">更多</legend>
+						</a><br />
+						<div class="banner" id="b04">
+							<ul>
+								<li><img src="img/qw4.jpg" alt="" style="width: 50%;height: 300px;"></li>
+								<li><img src="img/qw5.jpg" alt=""style="width: 50%;height: 300px;"></li>
+                                 <li><img src="img/qw9.jpg" alt=""style="width: 50%;height: 300px;"></li>
+								<li><img src="img/qw3.jpg" alt=""style="width: 50%;height: 300px;"></li>
+							</ul>
+							<!--<a href="javascript:void(0);" class="unslider-arrow04 prev"><img class="arrow" id="al" src="arrowl.png" alt="prev" width="20" height="35"></a>
+							<a href="javascript:void(0);" class="unslider-arrow04 next"><img class="arrow" id="ar" src="arrowr.png" alt="next" width="20" height="37"></a>-->
+						</div>
+
+					</fieldset>
+				</form>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+
+						<li>
+							<a href="#mainpage" data-transition="slide" data-direction="reverse" class="ui-btn  ui-icon-home ui-btn-icon-left  " id="1" onclick="changeTitle(0)">首页</a>
+						</li>
+
+						<li>
+							<a href="#library" data-transition="slide" class="ui- btn ui-icon-grid ui-btn-icon-left ui-btn-active ui-state-persist" id="2" onclick="changeTitle(1)">推荐</a>
+						</li>
+						<!--黑色 "搜索" 图标不使用灰色圆圈 (组合使用 "ui-nodisc-icon" 和 "ui-alt-icon"):-->
+						<li>
+							<a href="index2.html" data-transition="slide" class="ui-btn ui-icon-user ui-btn-icon-left" id="3" onclick="changeTitle(2)">我的</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!--书城-->
+		<div data-role="page" id="librarymore">
+			<div data-role="header" data-position="fixed">
+				<div data-role="navbar">
+					<a href="#mainpage" data-direction="reverse" class="ui-btn ui-icon-back ui-btn-icon-left ">书城</a>
+
+				</div>
+
+			</div>
+			<div data-role="main" class="ui-content">
+				<form class="ui-filterable">
+					<input id="myFilter" data-type="search" placeholder="搜索你想看的书">
+				</form>
+				<ul data-role="listview" data-filter="true" data-input="#myFilter" data-autodividers="true" data-inset="true">
+					<!--<span class="ui-li-count">2</span>计数气泡-->
+					<!--<li data-role="list-divider">星期三, 1 月 2 日, 2013 <span class="ui-li-count">2</span></li>-->
+					<li>
+						<a href="#">
+							<img src="img/book.jpg">
+							<h2>解忧杂货店</h2>
+
+						</a>
+
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/xianglian.jpg">
+							<h2>项链</h2>
+
+						</a>
+
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/hlm.jpg">
+							<h2>红楼梦</h2>
+
+						</a>
+
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/bali.jpg">
+							<h2>巴黎圣母院</h2>
+
+						</a>
+
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/qisha.jpg">
+							<h2>七杀简史</h2>
+
+						</a>
+
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/xiyou.jpg">
+							<h2>西游记</h2>
+
+						</a>
+
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/sanguo.jpg">
+							<h2>三国演义</h2>
+
+						</a>
+
+					</li>
+				</ul>
+			</div>
+			<div data-role="footer" data-position="fixed">
+
+			</div>
+		</div>
+		<!--
+        	注册界面
+        -->
+		<div data-role="page" id="register">
+			<div data-role="header">
+				<a href="#login" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse">返回</a>
+				<h1>Register</h1>
+			</div>
+			<div data-role="main" class="ui-content">
+				<form method="post" action="#">
+					<div data-role="fieldcontain">
+						<input type="text" name="username" id="username" placeholder="用户名">
+						<input type="password" name="password" id="password" placeholder="密码">
+						<input type="password" id="repassword" placeholder="确认密码">
+						<input type="email" name="email" id="email" placeholder="邮箱">
+						
+						
+						<a href="#login" data-role="button" class="ui-btn ui-corner-all" data-transition="slide" onclick="addData()">注册</a>
+
+					</div>
+				</form>
+			</div>
+		</div>
+		<!--
+        	用户信息界面
+        -->
+		<div data-role="page" id="userinfo" onload="showInfo()">
+			<div data-role="header">
+
+				<a href="#login" data-direction="reverse" class="ui-btn ui-icon-back ui-btn-icon-left ">返回</a>
+				<h1>用户信息</h1>
+
+			</div>
+			<div data-role="main" class="ui-content">
+				<table>
+					<tr>
+						<td>用户名：</td>
+						<td><input type="text" name="userName" id="userName" required/></td>
+					</tr>
+					<tr>
+						<td>密码：</td>
+						<td><input type="text" name="userPwd" id="userPwd" required/></td>
+					</tr>
+					<tr>
+						<td>邮箱：</td>
+						<td><input type="text" name="userEmail" id="userEmail" required/></td>
+					</tr>
+					<tr>
+						<td>性别：</td>
+						<td><input type="text" name="userSex" id="userSex" required/></td>
+					</tr>
+					<tr>
+						<td>生日：</td>
+						<td><input type="text" name="userBirth" id="userBirth" required/></td>
+					</tr>
+				</table>
+				<table id="tblData"></table>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+
+						<li>
+							<a href="#mainpage" data-transition="slide" data-direction="reverse" class="ui-btn  ui-icon-home ui-btn-icon-left  " id="1" onclick="changeTitle(0)">首页</a>
+						</li>
+
+						<li>
+							<a href="#library" data-transition="slide" data-direction="reverse" class="ui- btn ui-icon-grid ui-btn-icon-left " id="2" onclick="changeTitle(1)">推荐</a>
+						</li>
+						<!--黑色 "搜索" 图标不使用灰色圆圈 (组合使用 "ui-nodisc-icon" 和 "ui-alt-icon"):-->
+						<li>
+							<a href="index2.html" data-transition="slide" class="ui-btn ui-icon-user ui-btn-icon-left ui-btn-active ui-state-persist" id="3" onclick="changeTitle(2)">我的</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--
+        	书籍信息
+        -->
+		<div data-role="page" id="bookoone">
+
+			<div data-role="header" data-position="fixed">
+				<a href="#mainpage" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse">返回</a>
+				<h1>童年</h1>
+				<a href="#myPanel" data-role="button" data-icon="bars" data-transition="slide">目录</a>
+				<!--<hr>
+				<a href="#" data-role="button" style="float:left" class="ui-btn ui-btn-inline ui-corner-all ui-icon-arrow-l ui-btn-icon-left" data-position="fixed">上一章</a>
+				
+				<a href="#diyizhang" data-role="button" style="float: right;" class="ui-btn ui-btn-inline ui-corner-all ui-icon-arrow-r ui-btn-icon-right" data-position="fixed">下一章</a>-->
+			</div>
+			<div data-role="main" class="ui-content">
+				<ul data-role="listview" data-inset="true">
+					<li data-role="list-divider">目录</li>
+					<li>
+						<a href="#daoduone" data-transition="slide">第一章-回信放在牛奶箱</a>
+					</li>
+					<li>
+						<a href="#diyiuone" data-transition="slide">第二章-深夜的口琴</a>
+					</li>
+					<li>
+						<a href="#dieruone" data-transition="slide">第三章-在CIVIC车上等到天亮</a>
+					</li>
+					<li>
+						<a href="#diesanone" data-transition="slide">第四章-听着披头士默祷</a>
+					</li>
+					<li>
+						<a href="#disione" data-transition="slide">第五章-在天上祈祷</a>
+					</li>
+				</ul>
+
+			</div>
+			<div data-role="footer">
+
+			</div>
+		</div>
+		<div data-role="page" id="daoduone">
+			<div data-role="header" data-position="fixed">
+				<a href="#bookoone" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse">返回</a>
+				<h1></h1>
+				<a href="#diyiuone" data-transition="slide" data-direction="reverse" data-role="button" style="float: right;" class="ui-btn ui-btn-inline ui-corner-all ui-icon-arrow-r ui-btn-icon-right" data-position="fixed">下一章</a>
+			</div>
+			<div data-role="main" style="margin: 5px;">
+
+				<p>第一章-回信放在牛奶箱</p>
+				<p>东野圭吾小说普及性之所以这么高，几乎等于畅销书保证，一个不能不提的因素，即他的作品并非只有谜团，只是卖弄诡计；一个更重要的元素，即他过人的说故事能力，以及很有温度的文字书写；身为作家，强项一堆，难怪东野的创作总是多元又量产。</p>
+				<p>《解忧杂货店》是东野圭吾二○一二年的温馨长篇，这间会帮人解忧的「浪矢杂货店」，规则是只要在晚上把写了烦恼的信丢进铁卷门上的邮件投递口，隔天就可以在店后方的牛奶箱里拿到回信。嗯，这个题材初看之时是会联想到辻村深月那部有通灵者帮人完成心愿的《使者》，满有异曲同工的味道，基本上，是属于「穿越剧」这一款，东野老师写这类故事算驾轻就熟了，如果读者曾被他之前的《时生》、《秘密》感动疗愈到，那本书就铁定是你的菜。</p>
+				<p>前述特别提到东野圭吾是说故事高手，在本作更是展露无遗。「解忧」杂货店不是神庙，不是拜拜求签用的，服务项目比较像是人生咨询、心理辅导，比如这样的一个问题：「为参加奥运目标奋斗的女孩，因为男友罹癌将不久人世，所以陷入彷徨困惑。男友一直是她努力的支柱，因此当下是要弃男友于不顾，忍痛追求两人的梦想？还是陪男友走完人生最后一段路，但却会让他带着遗憾而死？」</p>
+				<p>「浪矢杂货店」该怎么回复少女的烦恼？如果是人生哲理一路谈下去，会像张老师、像生命线，但这可是小说喔，读者要的是故事性，有高潮起伏的趣味，有峰回路转的戏剧张力，显然东野圭吾有他的好几套，即便励志成份有一些，但成为小说的架构布局及起承转合，面面俱到很完整，更何况本书还是长篇咧！</p>
+				<p>好看的故事就是要有梗，梗要铺得恰到好处。本作的几个梗：以一九八○年为关键转折，回到过去、跨越时空三十年、对孤儿院的羁绊、带怀旧、有救赎、有报恩、是宿命与曙光共存的希望……素材在此，再来就看拼盘如何吸引人了。</p>
+				<p>以上段少女为了拚不拚奥运而烦恼为例。因为有着「回到过去、跨越时空三十年」的伏笔，所以解惑者自是可以有如先知般的预言，给少女的回信里多了更笃定的语气「世界各地都在发生战争，也有很多国家根本没办法参加奥运，日本也不能置身事外。妳很快就会了解这一点。」为何？因为苏联入侵阿富汗，一九八○年的莫斯科奥运，日本加入美国的抵制行列。同样这个「先知」梗，到了另一个关于「迷茫的汪汪」故事中更猛，「浪矢杂货店」不但建议汪汪去学理财知识，还会提示炒房玩股票切记在一九九○年来到之前务必获利了结，如何？是不是真的很神！</p>
+				<p>另，穿越剧＋怀旧风的混搭，难免也是卖点。「听着披头四默祷」这个故事用了相当比例的篇幅缅怀起 THE BEATLES。从〈A hard day's night〉、〈Mr. Moonlight〉到〈Don't let me down〉、〈I've got a feeling〉；从披头四来日本公演、惊传解散到约翰伦农的遇刺身亡；对于纪录片形式电影《Let it be》的不同时空解读，对于《Sgt. Pepper's Lonely Hearts Club Band》专辑的心境与感伤；明明是在描述一段少年的苦涩与残酷物语，不过就因为有了披头四的音符和默祷，更加让人动容，不胜唏嘘。</p>
+				<p>本书看似几段故事、几个短篇的组合，但不管在人物之间还是境遇的串连，环环相扣，前后呼应。内心纠结的理由，被迫成长的勇气，到头来，原来，你的赞叹，你的感动，这就是东野圭吾的本事。对了，东野圭吾不是推理作家吗？那本书呢？没甚么好疑问的，《解忧杂货店》依旧可列推理类，或许可以这样形容：一本毋须谋杀，不用警探，甚至连恶人都没有的推理小说。</p>
+				<p>──【部落客】小叶日本台</p>
+			</div>
+			<div data-role="footer"></div>
+		</div>
+		<div data-role="page" id="diyiuone">
+			<div data-role="header" data-position="fixed">
+
+				<a href="#bookoone" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse">返回</a>
+				<h1></h1>
+
+				<a href="#daoduone" data-transition="flip" data-direction="reverse" data-role="button" style="float: left;" class="ui-btn ui-btn-inline ui-corner-all ui-icon-arrow-r ui-btn-icon-right">上一章</a>
+				<a href="#dieruone" data-transition="flip" data-direction="reverse" data-role="button" style="float: right;" class="ui-btn ui-btn-inline ui-corner-all ui-icon-arrow-r ui-btn-icon-right">下一章</a>
+
+			</div>
+			<div data-role="main" style="margin: 5px;">
+
+				<p>第二章-深夜的口琴</p>
+				<p>东野圭吾小说普及性之所以这么高，几乎等于畅销书保证，一个不能不提的因素，即他的作品并非只有谜团，只是卖弄诡计；一个更重要的元素，即他过人的说故事能力，以及很有温度的文字书写；身为作家，强项一堆，难怪东野的创作总是多元又量产。</p>
+				<p>《解忧杂货店》是东野圭吾二○一二年的温馨长篇，这间会帮人解忧的「浪矢杂货店」，规则是只要在晚上把写了烦恼的信丢进铁卷门上的邮件投递口，隔天就可以在店后方的牛奶箱里拿到回信。嗯，这个题材初看之时是会联想到辻村深月那部有通灵者帮人完成心愿的《使者》，满有异曲同工的味道，基本上，是属于「穿越剧」这一款，东野老师写这类故事算驾轻就熟了，如果读者曾被他之前的《时生》、《秘密》感动疗愈到，那本书就铁定是你的菜。</p>
+				<p>前述特别提到东野圭吾是说故事高手，在本作更是展露无遗。「解忧」杂货店不是神庙，不是拜拜求签用的，服务项目比较像是人生咨询、心理辅导，比如这样的一个问题：「为参加奥运目标奋斗的女孩，因为男友罹癌将不久人世，所以陷入彷徨困惑。男友一直是她努力的支柱，因此当下是要弃男友于不顾，忍痛追求两人的梦想？还是陪男友走完人生最后一段路，但却会让他带着遗憾而死？」</p>
+				<p>「浪矢杂货店」该怎么回复少女的烦恼？如果是人生哲理一路谈下去，会像张老师、像生命线，但这可是小说喔，读者要的是故事性，有高潮起伏的趣味，有峰回路转的戏剧张力，显然东野圭吾有他的好几套，即便励志成份有一些，但成为小说的架构布局及起承转合，面面俱到很完整，更何况本书还是长篇咧！</p>
+				<p>好看的故事就是要有梗，梗要铺得恰到好处。本作的几个梗：以一九八○年为关键转折，回到过去、跨越时空三十年、对孤儿院的羁绊、带怀旧、有救赎、有报恩、是宿命与曙光共存的希望……素材在此，再来就看拼盘如何吸引人了。</p>
+				<p>以上段少女为了拚不拚奥运而烦恼为例。因为有着「回到过去、跨越时空三十年」的伏笔，所以解惑者自是可以有如先知般的预言，给少女的回信里多了更笃定的语气「世界各地都在发生战争，也有很多国家根本没办法参加奥运，日本也不能置身事外。妳很快就会了解这一点。」为何？因为苏联入侵阿富汗，一九八○年的莫斯科奥运，日本加入美国的抵制行列。同样这个「先知」梗，到了另一个关于「迷茫的汪汪」故事中更猛，「浪矢杂货店」不但建议汪汪去学理财知识，还会提示炒房玩股票切记在一九九○年来到之前务必获利了结，如何？是不是真的很神！</p>
+				<p>另，穿越剧＋怀旧风的混搭，难免也是卖点。「听着披头四默祷」这个故事用了相当比例的篇幅缅怀起 THE BEATLES。从〈A hard day's night〉、〈Mr. Moonlight〉到〈Don't let me down〉、〈I've got a feeling〉；从披头四来日本公演、惊传解散到约翰伦农的遇刺身亡；对于纪录片形式电影《Let it be》的不同时空解读，对于《Sgt. Pepper's Lonely Hearts Club Band》专辑的心境与感伤；明明是在描述一段少年的苦涩与残酷物语，不过就因为有了披头四的音符和默祷，更加让人动容，不胜唏嘘。</p>
+				<p>本书看似几段故事、几个短篇的组合，但不管在人物之间还是境遇的串连，环环相扣，前后呼应。内心纠结的理由，被迫成长的勇气，到头来，原来，你的赞叹，你的感动，这就是东野圭吾的本事。对了，东野圭吾不是推理作家吗？那本书呢？没甚么好疑问的，《解忧杂货店》依旧可列推理类，或许可以这样形容：一本毋须谋杀，不用警探，甚至连恶人都没有的推理小说。</p>
+				<p>──【部落客】小叶日本台</p>
+			</div>
+			<div data-role="footer"></div>
+		</div>
+		<div data-role="page" id="dieruone">
+			<div data-role="header" data-position="fixed">
+				<a href="#bookoone" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse">返回</a>
+				<h1></h1>
+				<a href="#diyiuone" data-transition="flip" data-direction="reverse" data-role="button" style="float: left;" class="ui-btn ui-btn-inline ui-corner-all ui-icon-arrow-r ui-btn-icon-right">上一章</a>
+				<a href="#diesanone" data-transition="flip" data-direction="reverse" data-role="button" style="float: right;" class="ui-btn ui-btn-inline ui-corner-all ui-icon-arrow-r ui-btn-icon-right">下一章</a>
+			</div>
+			<div data-role="main" style="margin: 5px;">
+
+				<p>第三章-在CIVIC车上等到天亮</p>
+				<p>东野圭吾小说普及性之所以这么高，几乎等于畅销书保证，一个不能不提的因素，即他的作品并非只有谜团，只是卖弄诡计；一个更重要的元素，即他过人的说故事能力，以及很有温度的文字书写；身为作家，强项一堆，难怪东野的创作总是多元又量产。</p>
+				<p>《解忧杂货店》是东野圭吾二○一二年的温馨长篇，这间会帮人解忧的「浪矢杂货店」，规则是只要在晚上把写了烦恼的信丢进铁卷门上的邮件投递口，隔天就可以在店后方的牛奶箱里拿到回信。嗯，这个题材初看之时是会联想到辻村深月那部有通灵者帮人完成心愿的《使者》，满有异曲同工的味道，基本上，是属于「穿越剧」这一款，东野老师写这类故事算驾轻就熟了，如果读者曾被他之前的《时生》、《秘密》感动疗愈到，那本书就铁定是你的菜。</p>
+				<p>前述特别提到东野圭吾是说故事高手，在本作更是展露无遗。「解忧」杂货店不是神庙，不是拜拜求签用的，服务项目比较像是人生咨询、心理辅导，比如这样的一个问题：「为参加奥运目标奋斗的女孩，因为男友罹癌将不久人世，所以陷入彷徨困惑。男友一直是她努力的支柱，因此当下是要弃男友于不顾，忍痛追求两人的梦想？还是陪男友走完人生最后一段路，但却会让他带着遗憾而死？」</p>
+				<p>「浪矢杂货店」该怎么回复少女的烦恼？如果是人生哲理一路谈下去，会像张老师、像生命线，但这可是小说喔，读者要的是故事性，有高潮起伏的趣味，有峰回路转的戏剧张力，显然东野圭吾有他的好几套，即便励志成份有一些，但成为小说的架构布局及起承转合，面面俱到很完整，更何况本书还是长篇咧！</p>
+				<p>好看的故事就是要有梗，梗要铺得恰到好处。本作的几个梗：以一九八○年为关键转折，回到过去、跨越时空三十年、对孤儿院的羁绊、带怀旧、有救赎、有报恩、是宿命与曙光共存的希望……素材在此，再来就看拼盘如何吸引人了。</p>
+				<p>以上段少女为了拚不拚奥运而烦恼为例。因为有着「回到过去、跨越时空三十年」的伏笔，所以解惑者自是可以有如先知般的预言，给少女的回信里多了更笃定的语气「世界各地都在发生战争，也有很多国家根本没办法参加奥运，日本也不能置身事外。妳很快就会了解这一点。」为何？因为苏联入侵阿富汗，一九八○年的莫斯科奥运，日本加入美国的抵制行列。同样这个「先知」梗，到了另一个关于「迷茫的汪汪」故事中更猛，「浪矢杂货店」不但建议汪汪去学理财知识，还会提示炒房玩股票切记在一九九○年来到之前务必获利了结，如何？是不是真的很神！</p>
+				<p>另，穿越剧＋怀旧风的混搭，难免也是卖点。「听着披头四默祷」这个故事用了相当比例的篇幅缅怀起 THE BEATLES。从〈A hard day's night〉、〈Mr. Moonlight〉到〈Don't let me down〉、〈I've got a feeling〉；从披头四来日本公演、惊传解散到约翰伦农的遇刺身亡；对于纪录片形式电影《Let it be》的不同时空解读，对于《Sgt. Pepper's Lonely Hearts Club Band》专辑的心境与感伤；明明是在描述一段少年的苦涩与残酷物语，不过就因为有了披头四的音符和默祷，更加让人动容，不胜唏嘘。</p>
+				<p>本书看似几段故事、几个短篇的组合，但不管在人物之间还是境遇的串连，环环相扣，前后呼应。内心纠结的理由，被迫成长的勇气，到头来，原来，你的赞叹，你的感动，这就是东野圭吾的本事。对了，东野圭吾不是推理作家吗？那本书呢？没甚么好疑问的，《解忧杂货店》依旧可列推理类，或许可以这样形容：一本毋须谋杀，不用警探，甚至连恶人都没有的推理小说。</p>
+				<p>──【部落客】小叶日本台</p>
+			</div>
+			<div data-role="footer"></div>
+		</div>
+		<div data-role="page" id="diesanone">
+			<div data-role="header" data-position="fixed">
+				<a href="#bookoone" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse">返回</a>
+				<h1></h1>
+				<a href="#dieruone" data-transition="flip" data-direction="reverse" data-role="button" style="float: left;" class="ui-btn ui-btn-inline ui-corner-all ui-icon-arrow-r ui-btn-icon-right">上一章</a>
+				<a href="#disione" data-transition="flip" data-direction="reverse" data-role="button" style="float: right;" class="ui-btn ui-btn-inline ui-corner-all ui-icon-arrow-r ui-btn-icon-right">下一章</a>
+			</div>
+			<div data-role="main" style="margin: 5px;">
+
+				<p>第四章-听着披头士默祷</p>
+				<p>东野圭吾小说普及性之所以这么高，几乎等于畅销书保证，一个不能不提的因素，即他的作品并非只有谜团，只是卖弄诡计；一个更重要的元素，即他过人的说故事能力，以及很有温度的文字书写；身为作家，强项一堆，难怪东野的创作总是多元又量产。</p>
+				<p>《解忧杂货店》是东野圭吾二○一二年的温馨长篇，这间会帮人解忧的「浪矢杂货店」，规则是只要在晚上把写了烦恼的信丢进铁卷门上的邮件投递口，隔天就可以在店后方的牛奶箱里拿到回信。嗯，这个题材初看之时是会联想到辻村深月那部有通灵者帮人完成心愿的《使者》，满有异曲同工的味道，基本上，是属于「穿越剧」这一款，东野老师写这类故事算驾轻就熟了，如果读者曾被他之前的《时生》、《秘密》感动疗愈到，那本书就铁定是你的菜。</p>
+				<p>前述特别提到东野圭吾是说故事高手，在本作更是展露无遗。「解忧」杂货店不是神庙，不是拜拜求签用的，服务项目比较像是人生咨询、心理辅导，比如这样的一个问题：「为参加奥运目标奋斗的女孩，因为男友罹癌将不久人世，所以陷入彷徨困惑。男友一直是她努力的支柱，因此当下是要弃男友于不顾，忍痛追求两人的梦想？还是陪男友走完人生最后一段路，但却会让他带着遗憾而死？」</p>
+				<p>「浪矢杂货店」该怎么回复少女的烦恼？如果是人生哲理一路谈下去，会像张老师、像生命线，但这可是小说喔，读者要的是故事性，有高潮起伏的趣味，有峰回路转的戏剧张力，显然东野圭吾有他的好几套，即便励志成份有一些，但成为小说的架构布局及起承转合，面面俱到很完整，更何况本书还是长篇咧！</p>
+				<p>好看的故事就是要有梗，梗要铺得恰到好处。本作的几个梗：以一九八○年为关键转折，回到过去、跨越时空三十年、对孤儿院的羁绊、带怀旧、有救赎、有报恩、是宿命与曙光共存的希望……素材在此，再来就看拼盘如何吸引人了。</p>
+				<p>以上段少女为了拚不拚奥运而烦恼为例。因为有着「回到过去、跨越时空三十年」的伏笔，所以解惑者自是可以有如先知般的预言，给少女的回信里多了更笃定的语气「世界各地都在发生战争，也有很多国家根本没办法参加奥运，日本也不能置身事外。妳很快就会了解这一点。」为何？因为苏联入侵阿富汗，一九八○年的莫斯科奥运，日本加入美国的抵制行列。同样这个「先知」梗，到了另一个关于「迷茫的汪汪」故事中更猛，「浪矢杂货店」不但建议汪汪去学理财知识，还会提示炒房玩股票切记在一九九○年来到之前务必获利了结，如何？是不是真的很神！</p>
+				<p>另，穿越剧＋怀旧风的混搭，难免也是卖点。「听着披头四默祷」这个故事用了相当比例的篇幅缅怀起 THE BEATLES。从〈A hard day's night〉、〈Mr. Moonlight〉到〈Don't let me down〉、〈I've got a feeling〉；从披头四来日本公演、惊传解散到约翰伦农的遇刺身亡；对于纪录片形式电影《Let it be》的不同时空解读，对于《Sgt. Pepper's Lonely Hearts Club Band》专辑的心境与感伤；明明是在描述一段少年的苦涩与残酷物语，不过就因为有了披头四的音符和默祷，更加让人动容，不胜唏嘘。</p>
+				<p>本书看似几段故事、几个短篇的组合，但不管在人物之间还是境遇的串连，环环相扣，前后呼应。内心纠结的理由，被迫成长的勇气，到头来，原来，你的赞叹，你的感动，这就是东野圭吾的本事。对了，东野圭吾不是推理作家吗？那本书呢？没甚么好疑问的，《解忧杂货店》依旧可列推理类，或许可以这样形容：一本毋须谋杀，不用警探，甚至连恶人都没有的推理小说。</p>
+				<p>──【部落客】小叶日本台</p>
+			</div>
+			<div data-role="footer"></div>
+		</div>
+		<div data-role="page" id="disione">
+			<div data-role="header" data-position="fixed">
+				<a href="#bookoone" data-transition="flip" data-direction="reverse" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse">返回</a>
+				<h1></h1>
+				<a href="#diesanone" data-transition="flip" data-direction="reverse" data-role="button" style="float: left;" class="ui-btn ui-btn-inline ui-corner-all ui-icon-arrow-r ui-btn-icon-right">上一章</a>
+
+			</div>
+			<div data-role="main" style="margin: 5px;">
+
+				<p>第五章-在天上祈祷</p>
+				<p>东野圭吾小说普及性之所以这么高，几乎等于畅销书保证，一个不能不提的因素，即他的作品并非只有谜团，只是卖弄诡计；一个更重要的元素，即他过人的说故事能力，以及很有温度的文字书写；身为作家，强项一堆，难怪东野的创作总是多元又量产。</p>
+				<p>《解忧杂货店》是东野圭吾二○一二年的温馨长篇，这间会帮人解忧的「浪矢杂货店」，规则是只要在晚上把写了烦恼的信丢进铁卷门上的邮件投递口，隔天就可以在店后方的牛奶箱里拿到回信。嗯，这个题材初看之时是会联想到辻村深月那部有通灵者帮人完成心愿的《使者》，满有异曲同工的味道，基本上，是属于「穿越剧」这一款，东野老师写这类故事算驾轻就熟了，如果读者曾被他之前的《时生》、《秘密》感动疗愈到，那本书就铁定是你的菜。</p>
+				<p>前述特别提到东野圭吾是说故事高手，在本作更是展露无遗。「解忧」杂货店不是神庙，不是拜拜求签用的，服务项目比较像是人生咨询、心理辅导，比如这样的一个问题：「为参加奥运目标奋斗的女孩，因为男友罹癌将不久人世，所以陷入彷徨困惑。男友一直是她努力的支柱，因此当下是要弃男友于不顾，忍痛追求两人的梦想？还是陪男友走完人生最后一段路，但却会让他带着遗憾而死？」</p>
+				<p>「浪矢杂货店」该怎么回复少女的烦恼？如果是人生哲理一路谈下去，会像张老师、像生命线，但这可是小说喔，读者要的是故事性，有高潮起伏的趣味，有峰回路转的戏剧张力，显然东野圭吾有他的好几套，即便励志成份有一些，但成为小说的架构布局及起承转合，面面俱到很完整，更何况本书还是长篇咧！</p>
+				<p>好看的故事就是要有梗，梗要铺得恰到好处。本作的几个梗：以一九八○年为关键转折，回到过去、跨越时空三十年、对孤儿院的羁绊、带怀旧、有救赎、有报恩、是宿命与曙光共存的希望……素材在此，再来就看拼盘如何吸引人了。</p>
+				<p>以上段少女为了拚不拚奥运而烦恼为例。因为有着「回到过去、跨越时空三十年」的伏笔，所以解惑者自是可以有如先知般的预言，给少女的回信里多了更笃定的语气「世界各地都在发生战争，也有很多国家根本没办法参加奥运，日本也不能置身事外。妳很快就会了解这一点。」为何？因为苏联入侵阿富汗，一九八○年的莫斯科奥运，日本加入美国的抵制行列。同样这个「先知」梗，到了另一个关于「迷茫的汪汪」故事中更猛，「浪矢杂货店」不但建议汪汪去学理财知识，还会提示炒房玩股票切记在一九九○年来到之前务必获利了结，如何？是不是真的很神！</p>
+				<p>另，穿越剧＋怀旧风的混搭，难免也是卖点。「听着披头四默祷」这个故事用了相当比例的篇幅缅怀起 THE BEATLES。从〈A hard day's night〉、〈Mr. Moonlight〉到〈Don't let me down〉、〈I've got a feeling〉；从披头四来日本公演、惊传解散到约翰伦农的遇刺身亡；对于纪录片形式电影《Let it be》的不同时空解读，对于《Sgt. Pepper's Lonely Hearts Club Band》专辑的心境与感伤；明明是在描述一段少年的苦涩与残酷物语，不过就因为有了披头四的音符和默祷，更加让人动容，不胜唏嘘。</p>
+				<p>本书看似几段故事、几个短篇的组合，但不管在人物之间还是境遇的串连，环环相扣，前后呼应。内心纠结的理由，被迫成长的勇气，到头来，原来，你的赞叹，你的感动，这就是东野圭吾的本事。对了，东野圭吾不是推理作家吗？那本书呢？没甚么好疑问的，《解忧杂货店》依旧可列推理类，或许可以这样形容：一本毋须谋杀，不用警探，甚至连恶人都没有的推理小说。</p>
+				<p>──【部落客】小叶日本台</p>
+			</div>
+			<div data-role="footer"></div>
+		</div>
+		<div id="xianglian" data-role="page">
+			<div data-role="header" data-position="fixed">
+				<a href="#mainpage" data-transition="flip" data-direction="reverse" data-role="button" data-icon="back" data-transition="slide" data-direction="reverse">返回</a>
+				<h1>项链</h1>
+			</div>
+			<div data-role="main" class="ui-content" style="margin: 5px;">
+				<p>小说项链-简介: 莫泊桑被尊称为“世界短篇小说之王”，他将短篇小说的趣味提升到前所未有的高度。在他的笔下，各种社会事件，如战争、政变、普选等，都得到了如实的表现；各个阶层的生活，如上层人士的纸醉金迷，中产阶级的锱必较，乡人村姑的朴素自然，都得到了形象的描绘；各种各样的人物，贵族、官僚、职员、店主、乞丐、妓女，都得到了逼真的刻画；各种各样的场景，如豪华的晚会、精致的沙龙、荒蛮的原野、喧哗的集镇、森严的官府、热门的街道，都得到了生动的写照。可以说，莫泊桑的短篇小说，是一幅栩栩如生的19世纪下半叶法国社会风俗长卷。 莫泊桑 项链——原文 世上的漂亮动人的女子，每每像是由于命运的差错似地，出生在一个小职员的家庭；我们现在要说的这一个正是这样。她没有陪嫁的资产，没有希望，没有任何方法使得一个既有钱又有地位的人认识她，了解她，爱她，娶她；到末了，她将将就就和教育部的一个小科员结了婚。 不能够讲求装饰，她是朴素的，但是不幸得像是一个降了等的女人；因为妇女们本没有阶级，没有门第之分，她们的美，她们的丰韵和她们的诱惑力就是供她们做出身和家世之用的。她们的天生的机警，出众的本能，柔顺的心灵，构成了她们唯一的等级，而且可以把民间的女子提得和最高的贵妇人一样高。 她觉得自己本是为了一切精美的和一切豪华的事物而生的，因此不住地感到痛苦。由于自己房屋的寒伧，墙壁的粗糙，家具的陈旧，衣料的庸俗，她非常难过。这一切，在另一个和她同等的妇人心上，也许是不会注意的，然而她却因此伤心，又因此懊恼，那个替她照料琐碎家务的布列塔尼省的小女佣人的样子，使她产生了种种忧苦的遗憾和胡思乱想。她梦想着那些静悄悄的接待室，如何蒙着东方的帏幕，如何点着青铜的高脚灯檠，如何派着两个身穿短裤子的高个儿侍应生听候指使，而热烘烘的空气暖炉使得两个侍应生都在大型的圈椅上打盹。她梦想那些披着古代壁衣的大客厅，那些摆着无从估价的瓷瓶的精美家具；她梦想那 些精致而且芬芳的小客厅，自己到了午后五点光景，就可以和亲切的男朋友在那儿闲谈，和那些被妇女界羡慕的并且渴望一顾的知名男子在那儿闲谈。 然而事实上，她每天吃晚饭的时候，就在那张小圆桌跟前和她的丈夫对面坐下了，桌上盖的白布要三天才换一回，丈夫把那只汤池的盖子一揭开，就用一种高兴的神气说道：“哈！好肉汤！世上没有比它更好的……”因此她又梦想那些丰盛精美的筵席了，梦想那些光辉灿烂的银器皿了，梦想那些满绣着仙境般的园林和其间的古装仕女以及古怪飞禽的壁衣了；她梦想那些用名贵的盘子盛着的佳肴美味了，梦想那些在吃着一份肉色粉红的鲈鱼或者一份松鸡翅膀的时候带着朗爽的微笑去细听的情话了。 而且她没有像样的服装，没有珠宝首饰，什么都没有。可是她偏偏只欢喜这一套，觉得自己是为了这一套而生的。她早就指望自己能够取悦于人，能够被人羡慕，能够有诱惑力而且被人追求。 她有一个有钱的女朋友，一个在教会女学里的女同学，可是现在已经不再想去看她，因为看了之后回来，她总会感到痛苦。于是她由于伤心，由于遗憾，由于失望并且由于忧虑，接连她要不料某一天傍晚，她丈夫带着得意扬扬的神气回来了，手里拿着一个大信封。 “瞧吧，”他说：“这儿有点儿东西是专门为了你的。”她赶忙拆开了信封，从里面抽了一张印着这样语句的请帖： “教育部长若尔日?郎波诺暨夫人荣幸地邀请骆塞尔先生和骆塞尔太太参加一月十八日星期一在本部大楼举办的晚会。” 她丈夫希望她一定快活得很，谁知她竟带着伤心而且生气的样子把请帖扔到桌上，冷冰冰地说： “你叫我拿着这东西怎么办？” “不过，亲人儿，我原以为你大概是满意的。你素来不出门，并且这是一个机会，这东西，一个好机会！我费了多少力才弄到手。大家都想要请帖，它是很难弄到手的，却又没有 多少份发给同事们。将来在晚会上看得见政界的全部人物。” 她用一种暴怒的眼光瞧着他，后来她不耐烦地高声说： “你叫我身上穿着什么到那儿去？” 他以前原没有想到这一层；支吾地说： “不过，你穿了去看戏的那件裙袍。我觉得它很好，我……” 瞧见他妻子流着眼泪，他不说话了，吃惊了，心里糊涂了。两大滴眼泪慢慢地从她的眼角向着口角流下来；他吃着嘴说： “你有点怎样？你有点怎样？” 但是她用一种坚强的忍耐心镇住了自己的痛苦，擦着自己那副润湿了的脸蛋儿，一面用 一道宁静的声音回答： “没有什么。不过我没有衣裳，所以我不能够去赴这个晚会。你倘若有一个同事，他的妻子能够比我打扮得好些，你就把这份请帖送给他。” 他发愁了，接着说道： “这么着吧，玛蒂尔蒂。要花多少钱，一套像样的衣裳，以后遇着机会你还可以再穿的，简单一些的？” 她思索了好几秒钟，确定她的盘算，并且也考虑到这个数目务必可以由她要求，不至于引起这个节俭科员的一种吃惊的叫唤和一个干脆的拒绝。 末了她迟迟疑疑地回答： “细数呢，我不晓得，不过我估计，有四百金法郎，总可以办得到。” 他的脸色有点儿发青了，因为他手里正存着这样一个数目预备去买一枝枪，使得自己在今年夏天的星期日里，可以和几个打猎的朋友们到南兑尔那一带平原地方去打鸟。 然而他却回答道： “就是这样吧。我给你四百金法郎。不过你要想法子去做一套漂亮的裙袍。” 晚会的日期已经近了，骆塞尔太太好像在发愁，不放心，心里有些焦躁不安。然而她的新裙袍却办好了。她丈夫某一天傍晚问她： “你有点怎样？想想吧，这三天以来，你是很异样的。”于是她说： “没有一件首饰，没有一粒宝石，插的和戴的，一点儿也没有，这件事真教我心烦。简直太穷酸了。现在我宁可不去赴这个晚会。” 他接着说道： “你将来可以插戴几朵鲜花。在现在的时令里，那是很出色的。花十个金法郎，你可以买得到两三朵很好看的玫瑰花。”她一点也听不进去。 “不成……世上最教人丢脸的，就是在许多有钱的女人堆里露穷相。” 但是她丈夫高声叫唤起来： “你真糊涂！去找你的朋友伏来士洁太太，问她借点首饰。你和她的交情，是可以开口的。” 她迸出了一道快活的叫唤： “这是真的。这一层我当初简直没有想过。” 第二天，她到她这位朋友家里去了，向她谈起了自己的烦闷。 伏来士洁太太向着她那座嵌着镜子的大衣柜跟前走过去，取出一个大的盒子，带过来打开向骆塞尔太太说： “你自己选吧，亲爱的。” 她最初看见许多手镯，随后一个用珍珠镶成的项圈，随后一个威尼斯款式的金十字架，镶着宝石的，做工非常精巧。她在镜子跟前试着这些首饰，迟疑不决，舍不得丢开这些东西，归还这些东西。她老问着。 “你还有没有一点什么别的？” “有的是，你自己找吧。我不晓得哪件合得上你的意思。”她忽然在一只黑缎子做的小盒子里，发现了一串用金刚钻镶成的项链，那东西真地压得倒一切；于是她的心房因为一种奢望渐渐跳起来。她双手拿着那东西发抖，她把它压着自己裙袍的领子绕在自己的颈项上面了，对着自己在镜子里的影子出了半天的神。 后来，她带看满腔的顾虑迟疑地问道： “你能够借这东西给我吗，我只借这一件？” “当然可以，当然可以。” 她跳起来抱着她朋友的颈项，热烈地吻了又吻，末后，她带着这件宝贝溜也似地走了。 晚会的日子到了，骆塞尔太太得到极大的成功，她比一般女宾都要漂亮，时髦，迷人，不断地微笑，并且乐得发狂。一般男宾都望着她出神，探听她的姓名，设法使人把自己引到她跟前作介绍。本部机要处的人员都想和她跳舞，部长也注意她。 她用陶醉的姿态舞着，用兴奋的动作舞着，她沉醉在欢乐里，她满意于自己的容貌的胜利，满意于自己的成绩的光荣；满意于那一切阿谀赞叹和那场使得女性认为异常完备而且甜美的凯歌，一种幸福的祥云包围着她。所以她什么都不思虑了。 她是清晨四点钟光景离开的。她丈夫自从半夜十二点钟光景，就同着另外三位男宾在一间无人理会的小客厅里睡着了；这三位男宾的妻子也正舞得很快活。 他对她的肩头上披上了那些为了上街而带来的衣裳，家常用的俭朴的衣裳，这些东西的寒伧意味是和跳舞会里的服装的豪华气派不相称的。她感到了这一层，于是为了避免另外那些裹着珍贵皮衣的太太们注意，她竟想逃遁了。 骆塞尔牵住了她： “等着吧。你到外面会受寒。我去找一辆出租的街车来吧。” 不过她绝不听从他，匆匆忙忙下了台阶儿。等到他俩走到街上竟找不着车了；于是他俩开始去寻觅，追着那些他们远远地望得见的车子。 他俩向着塞纳河的河沿走下去，两个人感到失望，浑身冷得发抖。末了，他俩在河沿上竟找着了一辆像是夜游病者一样的旧式轿车——这样的车子白天在巴黎如同感到自惭形秽，所以要到天黑以后才看得见它们。 车子把他俩送到殉教街的寓所大门外了，他俩惆怅地上了楼。在她，这算是结束了。而他呢，却想起了自己明天早上十点钟应当到部。 她在镜子跟前脱下了那些围着肩头的大氅之类，想再次端详端详无比荣耀的自己。但是陡然间她发出了一声狂叫。她已经没有那串围着颈项的金刚钻项链了！ 她丈夫这时候已经脱了一半衣裳，连忙问： “你有点怎样？” 她发痴似地转过身来向着他： “我已经……我已经……我现在找不着伏来士洁太太那串项链了。” 他张皇失措地站起来： “什么！……怎样！……哪儿会有这样的事！” 于是他俩在那件裙袍的衣褶里，大氅的衣褶里，口袋里，都寻了一个遍。到处都找不到它。 他问道： “你能够保证离开舞会的时候还挂着那东西吗？” “对呀，我在部里的过道里还摸过它。” “不过，倘若你在路上失掉了它，我们可以听得见它落下去的声响。它应当在车子里。” “对呀。这是可能的。你可曾记下车子的号码？” “没有。你呢，你当初也没有注意？” “没有。” 他俩口呆目瞪地互相瞧着。末了，骆塞尔重新着好了衣裳。 “我去，”他说，“我去把我俩步行经过的路线再走一遍，去看看是不是可以找得着它。” 于是他出街了。她呢，连睡觉的气力都没有，始终没有换下那套参加晚会的衣裳，就靠在一把围椅上面，屋子里没有生火，脑子里什么也不想。 她丈夫在七点钟回家。什么也没有找得着。 他走到警察总厅和各报馆里去悬一种赏格，又走到各处出租小马车的公司，总而言之，凡是有一线希望的地方都走了一个遍。 她对着这种骇人的大祸，在惊愕状态中间整整地等了一天。 骆塞尔在傍晚的时候带着瘦削灰白的脸回来了；他一点什么也没有发现过。 “应当，”他说，“写信给你那个女朋友说你弄断了那串项链的搭钩，现在正叫人在那里修理。这样我们就可以有周转的时间。” 她在他的口授之下写了这封信。 一星期以后，他们任何希望都消失了。并且骆塞尔像是老了五年，高声说道： “现在应当设法去赔这件宝贝了。” 第二天，他们拿了盛那件宝贝的盒子，照着盒子里面的招牌到了珠宝店里，店里的老板查过了许多账簿。 “从前，太太，这串项链不是我店里卖出去的，我只做了这个盒子。” 于是他俩到一家家的首饰店去访问了，寻觅一件和失掉的那件首饰相同的东西，凭着自己的记忆力做参考，他俩因为伤心和忧愁都快要生病了。 他们在故宫街一家小店里找到了一串用金刚钻镶成的念珠，他们觉得正像他们寻觅的那一串。它值得四万金法郎。店里可以作三万六千让给他俩。 他们所以央求那小店的老板在三天之内不要卖掉这东西。并且另外说好了条件：倘若原有的那串在二月底以前找回来，店里就用三万四千金当郎收买这串回去。 骆塞尔本存着他父亲从前留给他的一万八千金法郎。剩下的数目就得去借了。 他动手借钱了，向这一个借一千金法郎，向那个借五百，向这里借五枚鲁意金元，向另一处又借三枚。他签了许多借据，订了许多破产性的契约，和那些盘剥重利的人，各种不同国籍的放款人打交道。他损害了自己后半生的前程，他不顾成败利钝冒险地签上了自己的名姓，并且，想到了将来的苦恼，想到了就会压在身上的黑暗贫穷，想到了整个物质上的匮乏和全部精神上的折磨造成的远景，他感到恐怖了，终于走到那个珠宝商人的柜台边放下了三万六千金法郎，取了那串新项链。 在骆塞尔太太把首饰还给伏来士洁太太的时候，这一位用一种不高兴的神情向她说： “你应当早点儿还给我，因为我也许要用它。” 她当时并没有打开那只盒子，这正是她的女朋友担忧的事。倘若看破了这件代替品，她将要怎样想？她难道不会把她当做一个贼？ 骆塞尔太太尝到了穷人的困窘生活了。此外，突然一下用英雄气概打定了主意，那笔骇人的债是必须偿还的。她预备偿还它。他们辞退了女佣；搬了家；租了某处屋顶底下的一间阁楼下。 她开始做种种家务上的粗硬工作了，厨房里可厌的日常任务了。她洗濯杯盘碗碟，在罐子锅子的油垢底子上磨坏了那些玫瑰色的手指头。内衣和抹布都由她亲自用肥皂洗濯再晾到绳子上；每天早起，她搬运垃圾下楼，再把水提到楼上，每逢走完一层楼，就得坐在楼梯上喘口气。并且穿着得像是一个平民妇人了，她挽着篮子走到蔬菜店里、杂货店里和肉店里去讲价钱，去挨骂，极力一个铜元一个铜元地去防护她那点儿可怜的零钱。 每月都要收回好些借据，一面另外立几张新的去展缓日期。 她丈夫在傍晚的时候替一个商人誊清账目，时常到了深夜，他还得抄录那种五个铜元一面的书。 末后，这种生活延长到十年之久。 十年之末，他俩居然还清了全部债务，连同高利贷者的利钱以及由利上加利滚成的数目。 骆塞尔太太像是老了。现在，她已经变成了贫苦人家的强健粗硬而且耐苦的妇人了。乱挽着头发，歪歪地系着裙子，露着一双发红的手，高声说话，大盆水洗地板。但是有时候她丈夫到办公室里去了，她独自坐在窗前，于是就回想从前的那个晚会，那个跳舞会，在那里，她当时是那样美貌，那样快活。 倘若当时没有失掉那件首饰，她现在会走到什么样的境界？谁知道？谁知道？人生真是古怪，真是变化无常啊。无论是害您或者救您，只消一点点小事。 然而，某一个星期日，她正走到香榭丽舍大街兜个圈子去调剂一周之中的日常劳作，这时候忽然看见了一个带着孩子散步的妇人。那就是伏来士洁太太，她始终是年轻的，始终是美貌的，始终是有诱惑力的。 骆塞尔太太非常激动。要不要去和她攀谈？对的，当然。并且自己现在已经还清了债务，可以彻底告诉她。为什么不？她走近前去了。 “早安，约翰妮。” 那一位竟一点儿也不认识她了，以为自己被这个平民妇人这样亲热地叫唤是件怪事，她支支吾吾地说： “不过……这位太太！……我不知道……大概应当是您弄错了。 “没有错。我是玛蒂尔德?骆塞尔呀。” 她那个女朋友狂叫了一声： “噢！……可怜的玛蒂尔德，你真变了样子！……” “对呀，我过了许多很艰苦的日子，自从我上一次见过你以后；并且种种苦楚都是为了你！……” “为了我……这是怎样一回事？” “从前，你不是借了一串金刚钻项链给我到部里参加晚会，现在，你可还记得？” “记得，怎样呢？” “怎样，我丢了那串东西。” “哪儿的话，你早已还给我了。” “我从前还给你的是另外一串完全相同的。到现在，我们花了十年工夫才付清它的代价。像我们什么也没有的人，你明白这件事是不容易的……现在算是还清了帐，我是结结实实满意的了。” 伏来士洁太太停住了脚步： “你可是说从前买了一串金刚钻项链来赔偿我的那一串？” “对呀，你从前简直没有看出来，是吗？那两串东西原是完全相同的。” 说完，她用一阵自负而又天真的快乐神气微笑了。 伏来士洁太太很受感动了，抓住了她两只手： “唉。可怜的玛蒂尔德，不过我那一串本是假的，顶多值得五百金法郎！……”
+
+				</p>
+			</div>
+			<div data-role="footer">
+
+			</div>
+		</div>
+	</body>
+
+</html>

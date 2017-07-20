@@ -1,0 +1,66 @@
+{
+	"index.html": {
+		"resources": [
+			"css/jquery.mobile-1.4.5.min.css",
+			"js/jquery.min.js",
+			"img/qw6.jpg",
+			"img/hlm.jpg",
+			"img/qw5.jpg",
+			"img/xianglian.jpg",
+			"img/004.jpg",
+			"img/005.jpg",
+			"js/tinytools.tourtip.min.js",
+			"img/003.jpg",
+			"img/book.jpg",
+			"img/qw4.jpg",
+			"img/qw2.jpg",
+			"js/jquery.mobile-1.4.5.min.js",
+			"img/xiyou.jpg",
+			"img/qw3.jpg",
+			"img/006.jpg",
+			"img/sanguo.jpg",
+			"img/carat-r-black.png",
+			"js/unslider.min.js",
+			"img/002.jpg",
+			"img/qisha.jpg",
+			"img/bali.jpg",
+			"img/2a.jpg",
+			"css/tinytools.tourtip.min.css",
+			"img/qw9.jpg"
+		]
+	},
+	"index2.html": {
+		"resources": [
+			"img/0002.jpg",
+			"img/f.jpg",
+			"img/c.jpg",
+			"img/b.png",
+			"img/d.png",
+			"img/e.png",
+			"img/a.png",
+			"index4.html",
+			"img/icon2.jpg",
+			"img/icon3.jpg",
+			"img/icon4.jpg",
+			"img/icon1.jpg",
+			"index5.html",
+			"index3.html"
+		]
+	},
+	"index4.html": {
+		"resources": [
+			"img/l1.jpg",
+			"index2.html"
+		]
+	},
+	"index3.html": {
+		"resources": [
+			"index2.html"
+		]
+	},
+	"index5.html": {
+		"resources": [
+			"index2.html"
+		]
+	}
+}
